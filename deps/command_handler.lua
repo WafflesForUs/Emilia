@@ -11,7 +11,7 @@ for _, dirs in pairs(fs.readdirSync("./commands")) do
 
             commands[dirs][Command_Name] = require(".commands." .. dirs .. "." .. Command_Name) --requires the files
             if type(commands[dirs][Command_Name]) ~= "function" then
-
+                commands[dirs][Command_Name]=nil
             --accepts only files that returned a function and removes everything else
             end
         end
