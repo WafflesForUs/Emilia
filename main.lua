@@ -7,6 +7,7 @@ local token=""
 
 client:on("messageCreate", 
     function(message)
+        --[[
         if string.sub(message.content,1,#(prefix))==prefix then
             for _,i in pairs(cmds) do
                 if i[string.sub(message.content,#(prefix)+1)] then
@@ -16,7 +17,7 @@ client:on("messageCreate",
         end
 
     end)
-
+]]
 
 
 client:run("Bot "..token)
