@@ -5,7 +5,6 @@ local prefix="s!"
 require("reqs.functions")
 local token=""
 
-p(cmds)
 client:on("messageCreate", 
     function(message)
         
