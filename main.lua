@@ -17,7 +17,7 @@ client:on("messageCreate",
         end
 
     end)
-]]
+]] --still working on this part lmao 
 
 
 client:run("Bot "..token)
