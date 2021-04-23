@@ -9,7 +9,6 @@ client:on("messageCreate",
     function(message)
         
     local arg=string.split(message.content," ")[1]
-    print(arg)
         if string.sub(arg,1,#(prefix))==prefix then
             for _,i in pairs(cmds) do
                 if i[string.sub(arg,#(prefix)+1)] then
