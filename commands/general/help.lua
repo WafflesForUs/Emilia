@@ -14,6 +14,5 @@ return function(...)
             
         table.insert(embed.fields,{name=i,value=FetchCommands(v)})
         end
-        p(embed)
     message:reply({embed=embed})
 end
