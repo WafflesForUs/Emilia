@@ -11,7 +11,6 @@ return function(...)
     local message, client, data=...
     local embed={title="commands",fields={}}
         for i,v in pairs(data.commands) do
-            
         table.insert(embed.fields,{name=i,value=FetchCommands(v)})
         end
     message:reply({embed=embed})
