@@ -3,7 +3,6 @@ local client=discordia.Client()
 local cmds=require("command_handler")
 local prefix="e!"
 require("reqs.functions")
-local token=""
 
 client:on("messageCreate", 
     function(message)
