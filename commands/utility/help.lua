@@ -13,6 +13,5 @@ return function(...)
         for i,v in pairs(data.commands) do
         table.insert(embed.fields,{name=i,value=FetchCommands(v)})
         end
-        p(embed)
     message:reply({embed=embed})
 end
