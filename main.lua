@@ -19,4 +19,4 @@ client:on("messageCreate",
 
     end)
 
-client:run("Bot "..token)
+client:run("Bot "..io.open("token.txt","r"):read())
