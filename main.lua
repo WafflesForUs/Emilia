@@ -1,7 +1,7 @@
 local discordia=require("discordia")
 local client=discordia.Client()
 local cmds=require("command_handler")
-local prefix="s!"
+local prefix="e!"
 require("reqs.functions")
 local token=""
 
