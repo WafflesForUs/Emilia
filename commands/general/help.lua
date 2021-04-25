@@ -1,10 +1,10 @@
 function FetchCommands(tbl)
 
-    local h=""
+    local h={}
     for i in pairs(tbl) do
-        h=h..", "..i
+        table.insert(h,i)
     end
-    return h
+    return table.concat(h,", ")
 end
 
 return function(...)
