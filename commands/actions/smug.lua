@@ -5,9 +5,8 @@ return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
     if message.mentionedUsers.first or user then
-        local responses={" is hugging "," is cuddling "," is warming "}
-        local kiss =
-        json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/hug"}, stdio = {nil, true, 1}}).stdout.read())
+        local kiss = json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/smug"}, stdio = {nil, true, 1}}).stdout.read())
+        local responses={" is embarrassing "," is showing love to "," is doing stuff to "}
         message:reply {
             embed = {
                 title =message.author.name .. responses[math.random(#responses)] .. (user.name or message.mentionedUsers.first.name),
