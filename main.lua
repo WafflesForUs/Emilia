@@ -2,8 +2,12 @@ local discordia = require("discordia")
 local client = discordia.Client()
 local cmds = require("command_handler")
 local prefix = "e!"
+local acv= require("anti_crash_vid")
 require("reqs.functions")
+client:on("messageCreate",
+function(message) acv(message,client) 
 
+end)
 client:on(
     "messageCreate",
     function(message)
