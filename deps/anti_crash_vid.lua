@@ -37,4 +37,8 @@ return function(message,client)
     if message.content:lower():match("(https?://.+%.-)") then
             detector({url=message.content:lower():match("(https?://.+%.-)")},message,client)
     end
+    if message.content:lower():match(".+gfycat%..+") then
+        message:delete()
+        message:reply("due to gfycat having many discord crash gifs, and returning a 403 error each time we try to scan the gif, we decided to automatically delete images from there "..message.author.mentionString)
+    end
 end
