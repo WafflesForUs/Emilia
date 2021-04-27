@@ -3,7 +3,7 @@ function IsSketchy(tbl)
         for b in pairs(tbl) do
             if i ~= b then
                 if tonumber(b)>9000 or tonumber(i)>9000 then
-                    return 1
+                    return 0
                 end
                 if i > b then
                     return (i / b) * 100
@@ -28,7 +28,7 @@ function detector(i, message, client)
         message:delete()
         message:reply(
             "dont post crash gifs/videos " ..
-                message.author.mentionString .. "\n\n||" .. client:getUser("411887008160415766").mentionString .. "||"
+                message.author.mentionString ..(" sketchy rate: %"..(100-(IsSketchy(vals)))).. "\n\n||" .. client:getUser("411887008160415766").mentionString .. "||"
         )
     end
 end
