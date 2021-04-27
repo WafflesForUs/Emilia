@@ -2,6 +2,9 @@ function IsSketchy(tbl)
     for i in pairs(tbl) do
         for b in pairs(tbl) do
             if i ~= b then
+                if tonumber(b)>9000 or tonumber(i)>9000 then
+                    return 1
+                end
                 if i > b then
                     return (i / b) * 100
                 else
@@ -20,7 +23,8 @@ function detector(i, message, client)
             vals[i:match("(%d+)")] = true
         end
     end
-    if (IsSketchy(vals) or 100) < 70 then
+    print((IsSketchy(vals) or 100))
+    if (IsSketchy(vals) or 100) < 90 then
         message:delete()
         message:reply(
             "dont post crash gifs/videos " ..
