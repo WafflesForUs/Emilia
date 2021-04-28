@@ -5,7 +5,7 @@ return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
     local kiss =
-        json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/smug"}, stdio = {nil, true, 1}}).stdout.read())
+        json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/laugh"}, stdio = {nil, true, 1}}).stdout.read())
     local responses = {" is laughing ", " is releasing depomine ", " is happy "}
     function with()
         local them = (((message.mentionedUsers.first or {}).name or (user or {}).name or "") or "")
