@@ -13,13 +13,13 @@ return function(...)
             responses={" is smirking at "," is lewding "," is smugging at "}
             return responses[math.random(#responses)]..them
             else
-            resonses={" is smugging "," is smirking "," is thinking lewd "}
+                responses={" is smugging "," is smirking "," is thinking lewd "}
             return responses[math.random(#responses)]
         end
      end
     message:reply {
         embed = {
-            title = message.author.name .. responses[math.random(#responses)] .. with(),
+            title = message.author.name .. with(),
             image = {url = kiss.image},
             color = 16777214
         }
