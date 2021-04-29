@@ -20,6 +20,6 @@ return function(...)
     print(IsInvite(message.content))
     if IsInvite(message.content) and not invites[IsInvite(message.content)] then
         message:delete()
-        message:reply("your invite link wasn't whitelisted therefore deleted if "..client:getUser("837143242713726996").tag.." was in that server and you there's a problem you can contact "..client:getUser("411887008160415766").tag)
+        message:reply("your invite link wasn't whitelisted therefore deleted if "..client:getUser("837143242713726996").tag.." was in that server and you think there's a problem you can contact "..client:getUser("411887008160415766").tag)
     end
 end
