@@ -17,9 +17,8 @@ function IsInvite(str)
 return function(...)
     local invites=json.parse(spawn("curl", {args = {"127.0.0.1:80/whitelist"}, stdio = {nil, true, 1}}).stdout.read() or '{"discord-developers":"613425648685547541","dbl":"264445053596991498"}')
     local message, client=...
-    print(IsInvite(message.content))
     if IsInvite(message.content) and not invites[IsInvite(message.content)] then
         message:delete()
-        message:reply("your invite link wasn't whitelisted therefore deleted if "..client:getUser("837143242713726996").tag.." was in that server and you think there's a problem you can contact "..client:getUser("411887008160415766").tag)
+        message:reply("your invite link wasn't whitelisted therefore deleted if <@837143242713726996> was in that server and you think there's a problem you can contact <@411887008160415766>")
     end
 end
