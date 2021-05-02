@@ -19,7 +19,7 @@ function detector(i, message, client)
     for i, v in io.popen("ffprobe -v error -show_entries frame=width,height -select_streams v -of csv=p=0 " .. i.url):lines(
 
     ) do --video/gif resolution per frame
-        if not vals[i:match("(%d+)")] then
+        if i:match("(%d+)") and not vals[i:match("(%d+)")] then
             vals[i:match("(%d+)")] = true
         end
     end
