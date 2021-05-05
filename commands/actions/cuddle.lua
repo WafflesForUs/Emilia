@@ -5,8 +5,9 @@ return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
     if message.mentionedUsers.first or user then
-        local req = json.parse(spawn("curl", {args = {"https://api.waifu.pics/sfw/bite"}, stdio = {nil, true, 1}}).stdout.read())
-        local responses={" is eating "," is trying to vore "," is nomming "}
+        local responses={" is hugging "," is cuddling "," is warming "}
+        local req =
+        json.parse(spawn("curl", {args = {"https://api.waifu.pics/sfw/cuddle"}, stdio = {nil, true, 1}}).stdout.read())
         message:reply {
             embed = {
                 title =message.author.name .. responses[math.random(#responses)] .. (user.name or message.mentionedUsers.first.name),
