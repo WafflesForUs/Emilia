@@ -5,7 +5,7 @@ return function(...)
     local message,client=...
     if not message.channel.nsfw then message:reply("use this command in a nsfw channel") return end
 
-    local req = json.parse(spawn("curl", {args = {"https://api.waifu.pics/nsfw/neko"}, stdio = {nil, true, 1}}).stdout.read())
+    local req = json.parse(spawn("curl", {args = {"https://api.waifu.pics/nsfw/trap"}, stdio = {nil, true, 1}}).stdout.read())
     message:reply {
         embed = {
             title ="if there's a whole there's a way",
