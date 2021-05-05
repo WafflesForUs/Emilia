@@ -4,7 +4,7 @@ local json = require("deps.json")
 return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
-    local kiss =
+    local req =
         json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/smug"}, stdio = {nil, true, 1}}).stdout.read())
     local responses
     function with()
@@ -20,7 +20,7 @@ return function(...)
     message:reply {
         embed = {
             title = message.author.name .. with(),
-            image = {url = kiss.image},
+            image = {url = req.image},
             color = 16777214
         }
     }

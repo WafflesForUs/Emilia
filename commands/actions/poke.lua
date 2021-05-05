@@ -5,12 +5,12 @@ return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
     if message.mentionedUsers.first or user then
-        local kiss = json.parse(spawn("curl", {args = {"http://api.nekos.fun:8080/api/poke"}, stdio = {nil, true, 1}}).stdout.read())
+        local req = json.parse(spawn("curl", {args = {"https://shiro.gg/api/images/poke"}, stdio = {nil, true, 1}}).stdout.read())
         local responses={" is touching "," is hurting "," is poking "}
         message:reply {
             embed = {
                 title =message.author.name .. responses[math.random(#responses)] .. (user.name or message.mentionedUsers.first.name),
-                image = {url = kiss.image},
+                image = {url = req.url},
                 color=16777214
             }
         }
