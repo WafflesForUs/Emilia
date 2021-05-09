@@ -5,7 +5,7 @@ return function(...)
     local message, client = ...
     local user = client:getUser(message.content:match("(%d+)"))
     if message.mentionedUsers.first or user then
-        local req = json.parse(spawn("curl", {args = {"https://shiro.gg/api/images/bonk"}, stdio = {nil, true, 1}}).stdout.read())
+        local req = json.parse(spawn("curl", {args = {"https://api.waifu.pics/sfw/bonk"}, stdio = {nil, true, 1}}).stdout.read())
         local responses={" bonks "," bonked "," is bonking "}
         message:reply {
             embed = {
