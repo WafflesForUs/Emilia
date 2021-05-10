@@ -8,7 +8,7 @@ return function(...)
     local req = json.parse(spawn("curl", {args = {"https://api.waifu.pics/nsfw/trap"}, stdio = {nil, true, 1}}).stdout.read())
     message:reply {
         embed = {
-            title ="if there's a whole there's a way",
+            title ="if there's a hole there's a way",
             image = {url = req.url},
             color=16777214
         }
