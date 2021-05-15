@@ -32,6 +32,7 @@ client:on(
                     local h,b=pcall(i[string.sub(arg, #(prefix) + 1)],message, client, {commands = cmds, prefix = prefix})
                     if not h then
                         client:getChannel("841854073405702194"):send{embed={color=15158332,title="error",description="```"..b.."```",timestamp = discordia.Date():toISO('T', 'Z')}}
+                        message:reply("an unknown issue has occurred, please try again later")
                     end
                 end
             end
