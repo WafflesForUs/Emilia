@@ -14,7 +14,7 @@ return function(...)
                 color=16777214
             }
         }
-    elseif user.id==message.author.id then
+    elseif user and user.id==message.author.id then
         message:reply("please don't ):")
     else
         message:reply("mention someone to use this commmand")
