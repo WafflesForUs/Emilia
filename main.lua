@@ -8,7 +8,10 @@ local iw=require("invite_whitelister")  -- delete this if you're using Emilia fo
 local bl=require("blacklist")
 
 client:on("messageCreate",function(message) 
-    bl(message,client)
+    pcall(bl,message,client)
+end)-- ^
+client:on("messageUpdate",function(message) 
+    pcall(bl,message,client)
 end)-- ^
 
 
