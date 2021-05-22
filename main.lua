@@ -5,6 +5,12 @@ local prefix = "e!"
 local acv = require("anti_crash_vid")
 require("reqs.functions")
 local iw=require("invite_whitelister")  -- delete this if you're using Emilia for personal uses and the file deps/invite_whitelister.lua as well
+local bl=require("blacklist")
+
+client:on("messageCreate",function(message) 
+    bl(message,client)
+end)-- ^
+
 
 client:on("messageCreate",function(message) 
     if not message.guild or message.author.bot then return end
