@@ -7,7 +7,7 @@ return function(...)
     for _, file in pairs(fs.readdirSync("./blacklisted_words")) do
         local text = fs.readFileSync("./blacklisted_words/" .. file)
 
-        if text and message.content:match(file:match("(%w+)")) then
+        if text and message.content:gsub("%d",""):gsub("%W",""):gsub(" ",""):lower():match(file:match("(%w+)")) then
             message:delete()
             local punishment = text:match("(%w+):") --matches the punishment `{punishment}: `
             if punishment == "ban" then
@@ -23,6 +23,7 @@ return function(...)
                 local member = message.guild:getMember(message.author.id) -- message.member can return nil which can cause the bot to crash
                 member:addRole("778360589369081907")
             end
+            message:reply(message.author.name.." received a "..punishment.." for saying the "..file:match("%w").." word")
         end
     end
 end
