@@ -10,13 +10,9 @@ return function(...)
         if text and message.content:gsub("%d",""):gsub("%W",""):gsub(" ",""):lower():match(file:match("(%w+)")) then
             message:delete()
             local punishment = text:match("(%w+):") --matches the punishment `{punishment}: `
-            if punishment == "ban" then
-                print("c")
-                message.guild:banUser(message.author.id, "auto moderation", 7)
-            elseif punishment == "kick" then
-                print("b")
-                message.guild:kickUser(message.author.id, "auto moderation", 7)
-            elseif punishment == "mute" then
+            if punishment == "ban" or punishment=="kick" then
+                message.guild["banUser"](message.guild,message.author.id,"auto moderation",7)
+            else
                 print("a")
                 --TODO
                 local duration = text:match("%w+:%s+%d+") --matches the duration of how long the member will be banned {mute: x}
