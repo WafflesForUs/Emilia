@@ -14,7 +14,7 @@ return function(...)
             local punishment = text:match("(%w+):") --matches the punishment `{punishment}: `
             if punishment == "ban" or punishment == "kick" then
                 message.guild["banUser"](message.guild, message.author.id, "auto moderation", 7)
-            else
+            elseif punishment=="mute" then
                 --TODO
                 local duration = text:match("%w+:%s+%d+") --matches the duration of how long the member will be banned {mute: x}
                 local member = message.guild:getMember(message.author.id) -- message.member can return nil which can cause the bot to crash
