@@ -1,5 +1,5 @@
 local discordia = require("discordia")
-local client = discordia.Client()
+local client = discordia.Client{cacheAllMembers=true}
 local cmds = require("command_handler")
 local acv = require("anti_crash_vid")
 require("reqs.functions")
