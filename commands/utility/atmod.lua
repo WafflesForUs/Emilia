@@ -12,5 +12,10 @@ return function(...)
         end
         return RandomFromarray(t)
     end
-    message:reply(RandomDndOrOnlineMember(client:getRole("773838374440009758").members).mentionString)
+    local mod=RandomDndOrOnlineMember(client:getRole("773838374440009758").members)
+    if mod then 
+        message:reply(mod.mentionString)
+    else
+        message:reply("no mods are online")
+    end
 end
