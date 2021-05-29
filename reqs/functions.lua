@@ -19,3 +19,34 @@ function string.split(str, delim)
 	table.insert(ret, string.sub(str, n))
 	return ret
 end
+
+function ExecuteCommand(message,data)
+	local prefix=data.prefix
+	local discordia=data.discordia
+	local cmds=data.commands
+	local client=message.client
+	if not message.guild or message.author.bot then return end
+	local arg = string.split(message.content, " ")[1]
+	if string.sub(arg, 1, #(prefix)) == prefix then
+		for _, i in pairs(cmds) do
+			if i[string.sub(arg, #(prefix) + 1)] then
+				(function()
+					function SearchForFunction(k)
+						if type(k)=="function" then return k end
+						for _,i in pairs(k) do
+							if type(i)=="table" then
+								SearchForFunction(i)
+							elseif type(i)=="function" then
+								local b,h=pcall(i,message, client, {commands = cmds, prefix = prefix})
+								if not b then
+									message:reply("an unknown issue has occurred, please try again later")
+								end
+							end
+						end
+					end					
+					SearchForFunction(i[string.sub(arg, #(prefix) + 1)])
+				end)()
+			end
+		end
+	end
+end

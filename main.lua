@@ -35,19 +35,7 @@ client:on(
 client:on(
     "messageCreate",
     function(message)
-        if not message.guild or message.author.bot then return end
-        local arg = split(message.content, " ")[1]
-        if sub(arg, 1, #(prefix)) == prefix then
-            for _, i in pairs(cmds) do
-                if i[sub(arg, #(prefix) + 1)] then
-                    local h,b=pcall(i[sub(arg, #(prefix) + 1)],message, client, {commands = cmds, prefix = prefix})
-                    if not h then
-                        client:getChannel("841854073405702194"):send{embed={color=15158332,title="error",description="```"..b.."```",timestamp = discordia.Date():toISO('T', 'Z')}}
-                        message:reply("an unknown issue has occurred, please try again later")
-                    end
-                end
-            end
-        end
+        ExecuteCommand(message,{commands=cmds,prefix=prefix,discordia=discordia})
     end
 )
 
