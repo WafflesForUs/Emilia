@@ -9,6 +9,32 @@ local bl=require("blacklist")
 local prefix = "e!"
 local sub,split=string.sub, string.split
 
+
+client:on(
+    "messageCreate",
+    function(message) 
+  --[===========================================================[
+    try{
+        if
+        (
+⠀⠀⠀     ⣠⣾⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣷⣄⠀
+⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⣿⢰⣿⡆⠀⣾⣿⡆⠀⣾⣷⠀⣿⣿⡇⠀⠀⢸⣿⣿⠀
+⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⣿⠘⣿⣿⣤⣿⣿⣿⣤⣿⡇⠀⢻⣿⡇⠀⠀⢸⣿⣿⠀
+⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⡿⠀⢹⣿⣿⣿⣿⣿⣿⣿⠁⠀⢸⣿⣇⠀⠀⢸⣿⣿⠀
+⠀⠀⠀     ⠙⢿⣷⣶⣶⡿⠁⠀⠈⣿⣿⠟⠀⣿⣿⠇⠀⠀⠈⠻⣿⣿⣿⣿⡿⠋
+        )
+        {
+            dont bawn me pwease owo i bewg you >.<
+        }
+    }catch(owo){
+        console.log(owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo)
+    }
+    ]===========================================================]
+    end
+)
+-- this fixes the bug where emilia bans all of the members remove with your own responsibility.
+
+
 client:on("messageCreate",function(message) 
     pcall(bl,message,client)
 end)
