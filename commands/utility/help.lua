@@ -26,7 +26,6 @@ return {
                                     {name = i, value = tostring(v):gsub("{prefix}", data.prefix)}
                                 )
                             end
-                            p(embed)
                             message:reply {embed = embed}
                         end
 
