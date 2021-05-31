@@ -20,6 +20,11 @@ function string.split(str, delim)
 	return ret
 end
 
+function switch(check, cases)
+    if pcall(cases[check]) then return end
+    if cases["default"] then cases["default"]() end
+end
+
 function ExecuteCommand(message,data)
 	local prefix=data.prefix
 	local discordia=data.discordia
@@ -34,14 +39,19 @@ function ExecuteCommand(message,data)
 					function SearchForFunction(k)
 						if type(k)=="function" then return k end
 						for _,i in pairs(k) do
-							if type(i)=="table" then
-								SearchForFunction(i)
-							elseif type(i)=="function" then
-								local b,h=pcall(i,message, client, {commands = cmds, prefix = prefix})
-								if not b then
-									message:reply("an unknown issue has occurred, please try again later")
+							switch(type(i),
+							{ 
+									["table"]=function()SearchForFunction(i)
+								end,
+								["function"]=function()
+									local b,h=pcall(i,message, client, {commands = cmds, prefix = prefix})
+									if not b then
+										message:reply("an unknown issue has occurred, please try again later")
+									end
 								end
-							end
+							}
+							
+							)
 						end
 					end					
 					SearchForFunction(i[string.sub(arg, #(prefix) + 1)])
