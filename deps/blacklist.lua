@@ -13,7 +13,7 @@ return function(...)
             message:delete()
             local punishment = text:match("(%w+):") --matches the punishment `{punishment}: `
             if punishment == "ban" or punishment == "kick" then
-                message.guild["banUser"](message.guild, message.author.id, "auto moderation", 7)
+                message.guild[punishment.."User"](message.guild, message.author.id, "auto moderation", 7)
             elseif punishment=="mute" then
                 --TODO
                 local duration = text:match("%w+:%s+%d+") --matches the duration of how long the member will be banned {mute: x}
