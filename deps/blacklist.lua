@@ -1,4 +1,9 @@
 local fs = require("fs")
+local dir="./blacklisted_words"
+
+function DelUnwantedCharacters(str)
+    return str:gsub("%d", ""):gsub("%W", ""):gsub(" ", "")
+end
 
 return function(...)
     local message, client = ...
@@ -6,19 +11,24 @@ return function(...)
         return
     end
 
-    for _, file in pairs(fs.readdirSync("./blacklisted_words")) do
-        local text = fs.readFileSync("./blacklisted_words/" .. file)
+    for _, file in pairs(fs.readdirSync(dir)) do
+        local text = fs.readFileSync(dir .. file)
 
-        if text and message.content:gsub("%d", ""):gsub("%W", ""):gsub(" ", ""):lower():match(file:match("(%w+)")) then
-            message:delete()
-            local punishment = text:match("(%w+):") --matches the punishment `{punishment}: `
+        if text and DelUnwantedCharacters(message.content):lower():match(file:match("(%w+)")) then
+            message:delete()             
+            --matches the punishment `{punishment}: `
+            local punishment = text:match("(%w+):")
+            
+
             if punishment == "ban" or punishment == "kick" then
-                message.guild[punishment.."User"](message.guild, message.author.id, "auto moderation", 7)
+                message.guild[punishment.."User"](message.guild, message.author.id, "auto moderation: said "..file, 7)
             elseif punishment=="mute" then
-                --TODO
-                local duration = text:match("%w+:%s+%d+") --matches the duration of how long the member will be banned {mute: x}
-                local member = message.guild:getMember(message.author.id) -- message.member can return nil which can cause the bot to crash
+                
+                --local duration = text:match("%w+:%s+%d+")    (matches the duration of how long the member will be banned {mute: x})
+
+                local member = message.guild:getMember(message.author.id) 
                 member:addRole("778360589369081907")
+                --TODO
             end
             message:reply(
                 message.author.name .. " received a " .. punishment .. " for saying the " .. file:match("%w") .. " word"
