@@ -5,7 +5,7 @@ local acv = require("anti_crash_vid")
 require("reqs.functions")
 local iw=require("invite_whitelister")  -- delete this if you're using Emilia for personal uses and the file deps/invite_whitelister.lua as well
 local bl=require("blacklist")
-
+local aer=require("anti_earrape")
 local prefix = "e!"
 local sub,split=string.sub, string.split
 
@@ -37,6 +37,10 @@ client:on(
 
 client:on("messageCreate",function(message) 
     pcall(bl,message,client)
+end)
+
+client:on("messageCreate",function(message) 
+    pcall(aer,message,client)
 end)
 
 client:on("messageUpdate",function(message) 
