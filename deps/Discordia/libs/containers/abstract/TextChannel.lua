@@ -240,6 +240,12 @@ function TextChannel:send(content)
 			content = format('```\n%s\n```', content)
 		end
 
+		local refMessage, refMention
+		if tbl.reference then
+			refMessage = {message_id = Resolver.messageId(tbl.reference.message)}
+			refMention = {replied_user = not not tbl.reference.mention}
+		end
+
 		local mentions
 		if tbl.mention then
 			mentions, err = parseMention(tbl.mention)
@@ -279,6 +285,8 @@ function TextChannel:send(content)
 
 		data, err = self.client._api:createMessage(self._id, {
 			content = content,
+			message_reference = refMessage,
+			allowed_mentions = refMention,
 			tts = tbl.tts,
 			nonce = tbl.nonce,
 			embed = tbl.embed,
