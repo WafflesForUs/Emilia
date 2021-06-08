@@ -12,14 +12,13 @@ return function(...)
     end
 
     for _, file in pairs(fs.readdirSync(dir)) do
-        local text = fs.readFileSync(dir .. file)
+        local text = fs.readFileSync(dir .."/".. file)
+        if text and DelUnwantedCharacters(message.content:lower()):match(file:match("(%w+)")) then
 
-        if text and DelUnwantedCharacters(message.content):lower():match(file:match("(%w+)")) then
             message:delete()             
             --matches the punishment `{punishment}: `
             local punishment = text:match("(%w+):")
             
-
             if punishment == "ban" or punishment == "kick" then
                 message.guild[punishment.."User"](message.guild, message.author.id, "auto moderation: said "..file, 7)
             elseif punishment=="mute" then
