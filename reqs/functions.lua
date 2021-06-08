@@ -62,7 +62,7 @@ function ExecuteCommand(message, data)
                                     ["function"] = function()
                                         local b, h = pcall(i, message, client, {commands = cmds, prefix = prefix})
                                         if not b then
-                                            message:reply("an unknown issue has occurred, please try again later")
+                                            message:reply("an unknown issue has occurred, please try again later\n"..h)
                                         end
                                     end
                                 }
