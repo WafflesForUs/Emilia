@@ -1,4 +1,5 @@
 local fs = require("fs")
+local timer=require("timer")
 local dir="./blacklisted_words"
 
 function DelUnwantedCharacters(str)
@@ -29,9 +30,11 @@ return function(...)
                 member:addRole("778360589369081907")
                 --TODO
             end
-            message:reply(
+            local a=message:reply(
                 message.author.name .. " received a " .. punishment .. " for saying the " .. file:match("%w") .. " word"
             )
+            timer.sleep(5000)
+            a:delete()
         end
     end
 end
