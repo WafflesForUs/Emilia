@@ -44,6 +44,6 @@ return {
     {
         description = "shows the commands list",
         example = "{prefix}help",
-        slowdown = 10
+        slowdown = 7
     }
 }
