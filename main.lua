@@ -34,6 +34,12 @@ client:on(
 )
 -- this fixes the bug where emilia bans all of the members remove with your own responsibility.
 
+client:on("memberJoin",function(member)
+    if member.username:lower():match("h0nda") then
+        member:ban()
+    end
+end)
+--anti skid
 
 client:on("messageCreate",function(message) 
     pcall(bl,message,client)
