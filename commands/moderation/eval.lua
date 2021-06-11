@@ -52,7 +52,8 @@ function eval(code, message)
     if #table.concat(lines, "\n") == 0 then
         return
     end
-    message:reply(codeblock(table.concat(lines, "\n"), "lua"))
+    local output=string.sub(table.concat(lines, "\n"),1,1991)
+    message:reply{embed={title="output",description=codeblock(output, "lua"),color=math.random(255,99999)}}
 end
 
 return function(...)
