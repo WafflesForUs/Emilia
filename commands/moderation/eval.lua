@@ -1,4 +1,5 @@
 local pp = require("deps.pretty-print")
+spawn=require("deps.coro-spawn")
 
 function codeblock(code, lang)
     local lang = lang or ""
@@ -31,23 +32,23 @@ function eval(code, message)
         return
     end
     code = code:match("```l?u?a?(.+)```") or code
-    local functions = setmetatable({}, {__index = _G})
+    local global = setmetatable({}, {__index = _G})
     local lines = {}
-    functions.p = function(...)
+    global.p = function(...)
         table.insert(lines, prettyprint(...))
     end
-    functions.print = function(...)
+    global.print = function(...)
         table.insert(lines, lineprint(...))
     end
-    functions.message = message
+    global.message = message
 
-    local exec, syntax = load(code, "emilia", "t", functions)
+    local exec, syntax = load(code, "emilia", "t", global)
     if not exec then
-        return message:reply(codeblock(syntax))
+        return message:reply{embed={title="syntax error",description=codeblock(syntax),color=math.random(255,99999)}}
     end
     local success, error = pcall(exec)
     if not success then
-        return message:reply(codeblock(error))
+        return message:reply{embed={title="error",description=codeblock(error),color=math.random(255,99999)}}
     end
     if #table.concat(lines, "\n") == 0 then
         return
@@ -57,6 +58,6 @@ function eval(code, message)
 end
 
 return function(...)
-    local message, client, data = ...
-    eval(message.content:sub(#(data.prefix .. "eval") + 2), message)
+    message, client, data = ...
+    pcall(eval,message.content:sub(#(data.prefix .. "eval") + 2), message)
 end
