@@ -274,6 +274,8 @@ function TextChannel:send(content)
 				return nil, err
 			end
 		end
+		local components
+
 		if type(tbl.files) == 'table' then
 			for _, file in ipairs(tbl.files) do
 				files, err = parseFile(file, files)
@@ -290,8 +292,8 @@ function TextChannel:send(content)
 			tts = tbl.tts,
 			nonce = tbl.nonce,
 			embed = tbl.embed,
+			components = tbl.components,
 		}, files)
-
 	else
 
 		data, err = self.client._api:createMessage(self._id, {content = content})
