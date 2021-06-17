@@ -321,6 +321,16 @@ function EventHandler.MESSAGE_CREATE(d, client)
 	return client:emit('messageCreate', message)
 end
 
+function EventHandler.INTERACTION_CREATE(d, client)
+	local guild=client._guilds:get(d.guild_id)	
+	local member=guild._members:get(d.member.user.id)
+	local channel = getChannel(client, d.channel_id)
+	local message=channel._messages:get(d.message.id)
+	local data=d.data
+	if not message then return end
+	return client:emit('interactionCreate', message,data,member)
+end
+
 function EventHandler.MESSAGE_UPDATE(d, client) -- may not contain the whole message
 	local channel = getChannel(client, d.channel_id)
 	if not channel then return warning(client, 'TextChannel', d.channel_id, 'MESSAGE_UPDATE') end
