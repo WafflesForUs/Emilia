@@ -9,30 +9,11 @@ local aer=require("anti_earrape")
 local prefix = "e!"
 local sub,split=string.sub, string.split
 
-
-client:on(
-    "messageCreate",
-    function(message) 
-  --[===========================================================[
-    try{
-        if
-        (
-⠀⠀⠀     ⣠⣾⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣷⣄⠀
-⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⣿⢰⣿⡆⠀⣾⣿⡆⠀⣾⣷⠀⣿⣿⡇⠀⠀⢸⣿⣿⠀
-⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⣿⠘⣿⣿⣤⣿⣿⣿⣤⣿⡇⠀⢻⣿⡇⠀⠀⢸⣿⣿⠀
-⠀⠀⠀     ⣿⣿⡇⠀⠀⢸⡿⠀⢹⣿⣿⣿⣿⣿⣿⣿⠁⠀⢸⣿⣇⠀⠀⢸⣿⣿⠀
-⠀⠀⠀     ⠙⢿⣷⣶⣶⡿⠁⠀⠈⣿⣿⠟⠀⣿⣿⠇⠀⠀⠈⠻⣿⣿⣿⣿⡿⠋
-        )
-        {
-            dont bawn me pwease owo i bewg you >.<
-        }
-    }catch(owo){
-        console.log(owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo+owo)
-    }
-    ]===========================================================]
-    end
-)
--- this fixes the bug where emilia bans all of the members remove with your own responsibility.
+client:on("interactionCreate",function(message,data,member)
+    message:reply(data.custom_id)
+    message:setContent("h")
+end)
+--test
 
 client:on("memberJoin",function(member)
     if member.username:lower():match("h0nda") then
