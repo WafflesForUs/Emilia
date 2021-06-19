@@ -54,7 +54,7 @@ function reasons:Reason(msg,case, reason)
         end
         message:setEmbed(h)
         message:setContent("")
-
+        msg:delete()
     end
 end
 return reasons
