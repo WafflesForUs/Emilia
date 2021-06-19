@@ -1,5 +1,5 @@
 local logs=require("deps.logs")
-return function(...)
+return {function(...)
     local message, client, data=...
     local mention=(message.mentionedUsers.first or client:getUser(message.content:match("(%d+)")))
     if mention then
@@ -18,4 +18,10 @@ return function(...)
     else
         message:reply("mention someone to use this command")
     end
-end
+end,
+{
+    description = "kicks a user from the guild",
+    example = "{prefix}kick @init",
+    slowdown = 5
+}
+}

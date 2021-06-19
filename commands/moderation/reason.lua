@@ -1,6 +1,12 @@
 local logs=require("deps.logs")
-return function(...)
+return {function(...)
     local message,client=...
     local args=string.split(message.content," ")
     logs:Reason(message,args[2] or "",string.sub(message.content,#args[2]+#args[1]+3) or "")
-end
+end,
+{
+    description = "adds a reason for a case",
+    example = "{prefix}reason xxxxxx stinky",
+    slowdown = 2
+}
+}

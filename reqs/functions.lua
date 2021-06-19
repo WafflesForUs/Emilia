@@ -43,8 +43,20 @@ function ExecuteCommand(message, data)
     if not message.guild or message.author.bot then
         return
     end
+    
+    local function startsWithPrefix(tbl,str)
+        for _,v in pairs(tbl) do
+            if str:startsWith(v) then
+               return v
+            end
+        end
+    end 
+
     local arg = string.split(message.content, " ")[1]
-    if arg:startsWith(prefix) then
+    local prefixes=prefix
+    local prefix=startsWithPrefix(prefix,arg)
+    if prefix then
+        
         for _, i in pairs(cmds) do
             if i[string.sub(arg, #(prefix) + 1)] then
                 (function()
@@ -60,7 +72,7 @@ function ExecuteCommand(message, data)
                                         SearchForFunction(i)
                                     end,
                                     ["function"] = function()
-                                        local b, h = pcall(i, message, client, {commands = cmds, prefix = prefix})
+                                        local b, h = pcall(i, message, client, {commands = cmds, prefix = prefix, prefixes = prefixes})
                                         if not b then
                                             message:reply("an unknown issue has occurred, please try again later\n"..h)
                                         end

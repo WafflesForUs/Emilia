@@ -21,7 +21,7 @@ return {function(...)
 end,
 {
     description = "bans a user from the guild",
-    example = "{prefix}help ban @init",
-    slowdown = 10
+    example = "{prefix}ban @init",
+    slowdown = 5
 }
 }
