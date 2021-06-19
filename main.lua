@@ -6,7 +6,7 @@ require("reqs.functions")
 local iw=require("invite_whitelister")  -- delete this if you're using Emilia for personal uses and the file deps/invite_whitelister.lua as well
 local bl=require("blacklist")
 local aer=require("anti_earrape")
-local prefix = "e!"
+local prefix = {"onii-chan","e!","<@835079541009022987>","grijgriojerjoier","blender","uwu","emilia!","<@!835079541009022987>"}
 local sub,split=string.sub, string.split
 
 client:on("interactionCreate",function(message,data,member)
