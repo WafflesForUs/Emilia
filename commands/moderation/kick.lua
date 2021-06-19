@@ -8,7 +8,7 @@ return function(...)
                 if not message.guild:kickUser(mention.id,"user kicked by "..message.author.username) then
                     return message:reply("unable to kick user")
                 end
-                logs:New(message,"ban",mention)
+                logs:New(message,"kick",mention,15158332)
             else 
                 message:reply("this user is a mod, you can't kick mods") 
             end

@@ -8,7 +8,7 @@ return {function(...)
                 if not message.guild:banUser(mention.id,"user banned by "..message.author.username) then
                     return message:reply("unable to ban user")
                 end
-                logs:New(message,"ban",mention)
+                logs:New(message,"ban",mention,15158332)
             else 
                 message:reply("this user is a mod, you can't ban mods") 
             end
