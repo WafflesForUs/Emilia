@@ -1,5 +1,5 @@
 local reasons = {}
-function reasons:New(message, action, upon)
+function reasons:New(message, action, upon,colour)
     ::back::
     local code = ""
     for i = 1, 6 do
@@ -12,13 +12,15 @@ function reasons:New(message, action, upon)
     local channel = message.client:getChannel("855773180312420372")
     local newmessage =
         channel:send {
+            content=message.author.mentionString,
         embed = {
             title = action .. "| case " .. code,
             fields = {
                 {name = "user", value = upon.tag .. string.format("(%s)", upon.id)},
                 {name = "moderator", value = message.author.tag},
                 {name = "reason", value = "Moderator: please do e!reason " .. code .. " [reason]"}
-            }
+            },
+            color=colour or 0
         }
     }
     self[code] = {data = {message = newmessage, upon = upon, moderator = message.author.id}}
@@ -51,6 +53,8 @@ function reasons:Reason(msg,case, reason)
             end
         end
         message:setEmbed(h)
+        message:setContent("")
+
     end
 end
 return reasons
