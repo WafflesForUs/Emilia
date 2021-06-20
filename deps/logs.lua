@@ -33,7 +33,6 @@ end
 function reasons:Reason(msg, case, reason)
     local client = msg.client
     if reasons[case] and client then
-        print(reasons[case]["data"]["moderator"], msg.author.id, reasons[case]["data"]["moderator"] ~= msg.author.id)
         if reasons[case]["data"]["moderator"] ~= msg.author.id then
             return
         end
