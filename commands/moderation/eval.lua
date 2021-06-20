@@ -57,7 +57,12 @@ function eval(code, message)
     message:reply{embed={title="output",description=codeblock(output, "lua"),color=math.random(255,99999)}}
 end
 
-return function(...)
+return {function(...)
     message, client, data = ...
     pcall(eval,message.content:sub(#(data.prefix .. "eval") + 2), message)
-end
+end,{
+    description = "executes a lua code",
+    example = "{prefix}eval ```lua\nprint('init is gay')```",
+    slowdown = 5
+}
+}
