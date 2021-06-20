@@ -1,35 +1,40 @@
 local reasons = {}
-function reasons:New(message, action, upon,colour)
+function reasons:New(message, action, upon, colour)
     ::back::
     local code = ""
     for i = 1, 6 do
         local h = math.random(97, 122)
-            code = code .. string.char(h)
+        code = code .. string.char(h)
     end
     if self[code] then
         goto back
     end
     local channel = message.client:getChannel("855773180312420372")
+    local reason = "Moderator: please do e!reason " .. code .. " [reason]"
+    if message.author.id == message.client.user.id then
+        reason = "auto moderation"
+    end
     local newmessage =
         channel:send {
-            content=message.author.mentionString,
+        content = message.author.mentionString,
         embed = {
             title = action .. "| case " .. code,
             fields = {
                 {name = "user", value = upon.tag .. string.format("(%s)", upon.id)},
                 {name = "moderator", value = message.author.tag},
-                {name = "reason", value = "Moderator: please do e!reason " .. code .. " [reason]"}
+                {name = "reason", value = reason}
             },
-            color=colour or 0
+            color = colour or 0
         }
     }
     self[code] = {data = {message = newmessage, upon = upon, moderator = message.author.id}}
     return code
 end
-function reasons:Reason(msg,case, reason)
+function reasons:Reason(msg, case, reason)
     local client = msg.client
     if reasons[case] and client then
-        if reasons[case]["data"]["moderator"]~=msg.author.id then 
+        print(reasons[case]["data"]["moderator"], msg.author.id, reasons[case]["data"]["moderator"] ~= msg.author.id)
+        if reasons[case]["data"]["moderator"] ~= msg.author.id then
             return
         end
         self[case]["reason"] = reason
